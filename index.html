@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+    <title>AnchorForcing</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div id="mobile-warning">
+        For the best experience, it's better to use a desktop computer to view this website.
+        <br>
+        <button onclick="dismissWarning()">Continue</button>
+    </div>
+    
+    <div class="sidebar">
+            <ul>
+                <li><a href="#motivation" class="nav-link"><i class="fas fa-lightbulb"></i> Motivation </a></li>
+                <li><a href="#method" class="nav-link"><i class="fas fa-tv"></i> Overall Framework </a></li>
+                <li><a href="#interactive" class="nav-link"><i class="fas fa-video"></i> Interactive Long Video Showcases </a></li>
+                <li><a href="#compare" class="nav-link"><i class="fas fa-trophy"></i> Comparisons </a></li>
+                <li><a href="#contact-us" class="nav-link"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            </ul>
+    </div>
+
+    <div class="content">
+        <div id="paper-info" class="paper-info">
+            <h1>Anchor Forcing: Anchor Memory and Tri-Region RoPE for Interactive Streaming Video Diffusion</h1>
+            <div class="authors">
+                <p>
+                    <span class="author"><a href="https://young98cn.github.io/" target="_blank">Yang Yang<sup>1,2</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Tianyi Zhang<sup>2</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Wei Huang<sup>3</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Jinwei Chen<sup>2</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Boxi Wu<sup>1</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Xiaofei He<sup>1</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Deng Cai<sup>1</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Bo Li<sup>2</sup></a></span>, 
+                    <span class="author"><a href="" target="_blank">Peng-Tao Jiang<sup>2</sup></a></span>
+
+                </p>
+                <p>
+                    <span class="affiliation"><sup>1</sup> Zhejiang University</span>, 
+                    <span class="affiliation"><sup>2</sup> vivo BlueImage Lab</span>,
+                    <span class="affiliation"><sup>3</sup> The University of Hong Kong</span>
+                    <!-- Hong Kong University of Science and Technology (Guangzhou) -->
+                    <!-- HKUST(GZ) -->
+                </p>
+            </div>
+            <div class="links">
+                <p><a href="https://arxiv.org/abs/2512.14699" target="_blank">Paper (Arxiv)</a></p>
+                <p><a href="https://github.com/KlingTeam/MemFlow" target="_blank">GitHub</a></p>
+                <p><a href="https://www.youtube.com/watch?v=QCVdOhD5vFs" target="_blank">Video Demo</a></p>
+                <p><a href="https://huggingface.co/KlingTeam/MemFlow" target="_blank">Hugging Face</a></p> 
+            </div>
+            <h2>Please stay tuned for all video loading.</h2>
+        
+            <section id="motivation" class="gallery-section">
+                <h2>Motivation</h2>
+                <div class="framework-image-container">
+                    <img src="./assets/motivation.jpg" alt="Overall Framework Pipeline" class="framework-image" style="width: 60%; height: auto;">
+                </div>
+                <div class="framework-description">
+                    <p style="font-size: 20px;">We propose Anchor Forcing, which supports prompt switches that introduce new subjects and actions while preserving context, motion quality, and temporal coherence across clips. In contrast, prior methods degrade over time and often fail to realize newly introduced interactions, as highlighted by the red boxes. Red text denotes the interaction newly specified in each segment.</p>
+                </div>
+            </section>
+        
+            <section id="method" class="gallery-section">
+                <h2>Overall Framework</h2>
+                <div class="framework-image-container">
+                    <img src="./assets/method.jpg" alt="Overall Framework Pipeline" class="framework-image" style="width: 60%; height: auto;">
+                </div>
+                <div class="framework-description">
+                    <p style="font-size: 20px;">
+                        We denote the anchor memory for generating frame \(t\) as \(\mathcal{M}(t)\), and apply anchor-guided re-cache at \(f_1\) and \(f_2\) to update the local KV cache under the new prompt condition. <br>
+                        (a) Overview of Anchor Forcing in an interactive setting with two prompt switches. <br> 
+                        (b) Prior re-cache. It rebuilds the local cache solely from historical frame latents, which fails to retain prior KV evidence across prompt switches. <br>
+                        (c) Anchor-guided re-cache at \(f_2\). It augments re-cache with the anchor memory \(\mathcal{M}(6)\) and refreshes the junction caches \(x_5\).</p>
+                </div>
+            </section>
+
+            <section id="interactive" class="gallery-section">
+                <h2>Interactive Long Video Showcases</h2>
+                <h3>Hover on the video to see corresponding text prompts</h3>
+                <div class="speed-controls" role="group" aria-label="Playback speed">
+                    <span class="speed-label">Play speed:</span>
+                    <button class="speed-btn active" data-speed="1">x1</button>
+                    <button class="speed-btn" data-speed="2">x2</button>
+                </div>
+                <div class="gallery-3 interactive-grid"></div>
+            </section>
+            
+        
+            <section id="compare" class="gallery-section">
+                <h2>Comparisons</h2>
+                <p style="text-align: center; color: #666; font-size: 20px;">Compared with baselines, Anchor Forcing achieves stronger prompt compliance, more coherent dynamic motion, and higher long-range visual quality.</p>
+
+                <div class="speed-controls" role="group" aria-label="Playback speed">
+                    <span class="speed-label">Play speed:</span>
+                    <button class="speed-btn active" data-speed="1">x1</button>
+                    <button class="speed-btn" data-speed="2">x2</button>
+                </div>
+                <div class="gallery-4 compare-grid">
+                    <div class="col-header">LongLive</div>
+                    <div class="col-header">Infinity-RoPE</div>
+                    <div class="col-header">MemFlow</div>
+                    <div class="col-header">AnchorForcing</div>
+
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/chef_longlive.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sushi chef with headband slicing fresh tuna with a long knife at a minimalist bar.
+                            10-20s: Young couple on a date admiring the chef's precision as he slices tuna at the bar.
+                            20-30s: Chef expertly forming tuna nigiri and placing them on a wooden board for the couple.
+                            30-40s: Chef sliding the fresh nigiri board to the smiling couple in a quiet Japanese restaurant.
+                            40-50s: The couple tastes the sushi, and their faces show their delight at the delicious, fresh flavor.
+                            50-60s: Chef preparing the next course with graceful, precise movements for the seated couple.</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/chef_infinity-RoPE.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sushi chef with headband slicing fresh tuna with a long knife at a minimalist bar.
+                            10-20s: Young couple on a date admiring the chef's precision as he slices tuna at the bar.
+                            20-30s: Chef expertly forming tuna nigiri and placing them on a wooden board for the couple.
+                            30-40s: Chef sliding the fresh nigiri board to the smiling couple in a quiet Japanese restaurant.
+                            40-50s: The couple tastes the sushi, and their faces show their delight at the delicious, fresh flavor.
+                            50-60s: Chef preparing the next course with graceful, precise movements for the seated couple.</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/chef_memflow.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sushi chef with headband slicing fresh tuna with a long knife at a minimalist bar.
+                            10-20s: Young couple on a date admiring the chef's precision as he slices tuna at the bar.
+                            20-30s: Chef expertly forming tuna nigiri and placing them on a wooden board for the couple.
+                            30-40s: Chef sliding the fresh nigiri board to the smiling couple in a quiet Japanese restaurant.
+                            40-50s: The couple tastes the sushi, and their faces show their delight at the delicious, fresh flavor.
+                            50-60s: Chef preparing the next course with graceful, precise movements for the seated couple.</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/chef.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sushi chef with headband slicing fresh tuna with a long knife at a minimalist bar.
+                            10-20s: Young couple on a date admiring the chef's precision as he slices tuna at the bar.
+                            20-30s: Chef expertly forming tuna nigiri and placing them on a wooden board for the couple.
+                            30-40s: Chef sliding the fresh nigiri board to the smiling couple in a quiet Japanese restaurant.
+                            40-50s: The couple tastes the sushi, and their faces show their delight at the delicious, fresh flavor.
+                            50-60s: Chef preparing the next course with graceful, precise movements for the seated couple.</div>
+                    </div>
+                    
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/dance_longlive.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Paris bridge at sunset; street saxophonist; distant Eiffel Tower; melancholic melody.
+                            10-20s: Young female dancer, moved, starts dancing gracefully.
+                            20-30s: Duo perform together; he plays with more emotion, her dance more expressive; Eiffel Tower backdrop.
+                            30-40s: Small crowd gathers, captivated; colorful sunset sky.
+                            40-50s: Finale: last lingering note; graceful final pose; applause.
+                            50-60s: They smile at each other, bow to the crowd</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/dance_infinity-RoPE.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Paris bridge at sunset; street saxophonist; distant Eiffel Tower; melancholic melody.
+                            10-20s: Young female dancer, moved, starts dancing gracefully.
+                            20-30s: Duo perform together; he plays with more emotion, her dance more expressive; Eiffel Tower backdrop.
+                            30-40s: Small crowd gathers, captivated; colorful sunset sky.
+                            40-50s: Finale: last lingering note; graceful final pose; applause.
+                            50-60s: They smile at each other, bow to the crowd</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/dance_memflow.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Paris bridge at sunset; street saxophonist; distant Eiffel Tower; melancholic melody.
+                            10-20s: Young female dancer, moved, starts dancing gracefully.
+                            20-30s: Duo perform together; he plays with more emotion, her dance more expressive; Eiffel Tower backdrop.
+                            30-40s: Small crowd gathers, captivated; colorful sunset sky.
+                            40-50s: Finale: last lingering note; graceful final pose; applause.
+                            50-60s: They smile at each other, bow to the crowd</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/dance.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Paris bridge at sunset; street saxophonist; distant Eiffel Tower; melancholic melody.
+                            10-20s: Young female dancer, moved, starts dancing gracefully.
+                            20-30s: Duo perform together; he plays with more emotion, her dance more expressive; Eiffel Tower backdrop.
+                            30-40s: Small crowd gathers, captivated; colorful sunset sky.
+                            40-50s: Finale: last lingering note; graceful final pose; applause.
+                            50-60s: They smile at each other, bow to the crowd</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/gallery_longlive.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sunlit museum gallery with high ceilings, polished floors; female curator in tweed adjusts a classical marble statue.
+                            10-20s: Security guard in crisp uniform arrives to report a minor issue; statue stands majestically.
+                            20-30s: Curator listens; both hear a faint strange noise from another exhibit.
+                            30-40s: They cautiously head toward the noise.
+                            40-50s: Source found: a small lost kitten hiding behind a large marble bust’s base, meowing.
+                            50-60s: Curator gently picks up the kitten; guard smiles.</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/gallery_infinity-RoPE.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sunlit museum gallery with high ceilings, polished floors; female curator in tweed adjusts a classical marble statue.
+                            10-20s: Security guard in crisp uniform arrives to report a minor issue; statue stands majestically.
+                            20-30s: Curator listens; both hear a faint strange noise from another exhibit.
+                            30-40s: They cautiously head toward the noise.
+                            40-50s: Source found: a small lost kitten hiding behind a large marble bust’s base, meowing.
+                            50-60s: Curator gently picks up the kitten; guard smiles.</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/gallery_memflow.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sunlit museum gallery with high ceilings, polished floors; female curator in tweed adjusts a classical marble statue.
+                            10-20s: Security guard in crisp uniform arrives to report a minor issue; statue stands majestically.
+                            20-30s: Curator listens; both hear a faint strange noise from another exhibit.
+                            30-40s: They cautiously head toward the noise.
+                            40-50s: Source found: a small lost kitten hiding behind a large marble bust’s base, meowing.
+                            50-60s: Curator gently picks up the kitten; guard smiles.</div>
+                    </div>
+                    <div class="gallery-item" style=" --aspect-ratio: 16 / 9;">
+                        <video class="gallery-video" loop muted autoplay playsinline>
+                            <source src="./assets/comparison/gallery.mp4" type="video/mp4">
+                        </video>
+                        <div class="prompt-overlay-large">0-10s: Sunlit museum gallery with high ceilings, polished floors; female curator in tweed adjusts a classical marble statue.
+                            10-20s: Security guard in crisp uniform arrives to report a minor issue; statue stands majestically.
+                            20-30s: Curator listens; both hear a faint strange noise from another exhibit.
+                            30-40s: They cautiously head toward the noise.
+                            40-50s: Source found: a small lost kitten hiding behind a large marble bust’s base, meowing.
+                            50-60s: Curator gently picks up the kitten; guard smiles.</div>
+                    </div>
+            </section>
+        </div>
+    
+    <section id="contact-us" class="contact-us">
+        <h2>Contact Us</h2>
+        <p style="font-size: 18px;">
+            Feel free to contact Yang Yang at yangyang98@zju.edu.com for any question, cooperation, and communication.
+        </p>
+        <!-- add a bibtex -->
+        <p style="font-size: 18px;">
+            If you find this work useful, please consider citing:
+        </p>
+        <!-- align left, use a rounded gray box to bound it.-->
+        <!-- <div class="citation-container">
+            <div class="citation-box">
+                <pre>@article{yang2025longlive,
+                    title={LongLive: Real-time Interactive Long Video Generation},
+                    author={Shuai Yang and Wei Huang and Ruihang Chu and Yicheng Xiao and Yuyang Zhao and Xianbang Wang and Muyang Li and Enze Xie and Yingcong Chen and Yao Lu and Song Hanand Yukang Chen},
+                    year={2025},
+                    archivePrefix={arXiv},
+                    primaryClass={cs.CV}
+                }</pre>
+            </div>
+        </div> -->
+        <h3>Thank LongLive to provide us the project page's template! </h3>
+    </section>
+
+   <!-- Modal for image enlargement -->
+    <script src="./interactive_prompts.js"></script>
+    <script src="./script.js"></script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
